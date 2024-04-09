@@ -1,0 +1,13 @@
+
+Make sure "pip install virtualev"
+make sure "pip insall scrapy" is up to date
+python -m venv <name>
+cd Example/venv
+./Scripts/Activate
+cd bookscraper/bookscraper/spiders
+
+install ipython for the shell
+scrapy shell to start shell
+response.css() to get items
+scrapy crawl test to run
+scrapy crawl test -O <name>.json to create file
