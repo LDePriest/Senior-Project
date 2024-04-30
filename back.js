@@ -16,7 +16,8 @@ searchBar.addEventListener('keyup', (e) => {
 
 const loadCharacters = async () => {
     try {
-        const res = await fetch(//'https://hp-api.herokuapp.com/api/characters');
+        //This is where we connect the python.
+        const res = await fetch('https://hp-api.https://hp-api.onrender.com/api/characters.com/api/characters');
         hpCharacters = await res.json();
         displayCharacters(hpCharacters);
     } catch (err) {

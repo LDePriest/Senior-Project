@@ -1,25 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>Document</title>
-        <link rel="stylesheet" href="style.css" />
-    </head>
-    <body>
-        <div class="container">
-            <h1>&#x2728;Learn Harvest &#x2728;</h1>
-            <div id="searchWrapper">
-                <input
-                    type="text"
-                    name="searchBar"
-                    id="searchBar"
-                    placeholder="search for a character"
-                />
-            </div>
-            <ul id="charactersList"></ul>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>&#x2728;Learn Harvest &#x2728;</h1>
+        <div id="searchWrapper">
+            <input
+                type="text"
+                name="searchBar"
+                id="searchBar"
+                placeholder="search for a character"
+                oninput="filterCharacters()"
+            />
         </div>
-        <script src="back.js"></script>
-    </body>
+        <ul id="charactersList"></ul>
+    </div>
+    <script>
+        // Data from the provided JSON
+        const characters = [
+            {
+                "title": "The Coming Woman: A Novel Based on the Life of the Infamous Feminist, Victoria Woodhull",
+                "url": "https://books.toscrape.com/catalogue/the-coming-woman-a-novel-based-on-the-life-of-the-infamous-feminist-victoria-woodhull_993/index.html",
+                "category": "Default",
+                "description": "..."
+            },
+            {
+                "title": "A Light in the Attic",
+                "url": "https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html",
+                "category": "Poetry",
+                "description": "..."
+            },
+            // Add other characters here
+        ];
+
+        // Function to filter characters based on search input
+        function filterCharacters() {
+            const searchTerm = document.getElementById('searchBar').value.toLowerCase();
+            const charactersList = document.getElementById('charactersList');
+            charactersList.innerHTML = ''; // Clear previous results
+
+            characters.forEach(character => {
+                if (character.title.toLowerCase().includes(searchTerm)) {
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+                    a.textContent = character.title;
+                    a.href = character.url;
+                    a.target = "_blank"; // Open link in new tab
+                    a.style.color = "orange"; // Change link color to orange
+                    li.appendChild(a);
+                    charactersList.appendChild(li);
+                }
+            });
+        }
+
+        // Initial call to display all characters
+        filterCharacters();
+    </script>
+</body>
 </html>
